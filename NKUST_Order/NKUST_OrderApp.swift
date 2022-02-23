@@ -8,6 +8,7 @@
 import SwiftUI
 
 @main
+m
 struct NKUST_OrderApp: App {
     var body: some Scene {
         WindowGroup {

@@ -6,16 +6,35 @@
 //
 
 import SwiftUI
-
+m
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabView{
+            HomeView()
+                .tabItem{
+                    Image(systemName: "house.fill")
+                }
+            Text("List View ...")
+                .font(.title)
+                .foregroundColor(.secondary)
+                .tabItem{
+                    Image(systemName: "bag.fill")
+                }
+            Text("Profile View...")
+                .font(.title)
+                .foregroundColor(.secondary)
+                .tabItem{
+                    Image(systemName: "person.fill")
+                }
+        }
+        .accentColor(.black)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ForEach(ColorScheme.allCases, id: \.self) {
+            ContentView().preferredColorScheme($0)
+        }
     }
 }
