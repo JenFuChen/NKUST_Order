@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-m
+
 struct ContentView: View {
     var body: some View {
         TabView{
@@ -33,8 +33,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) {
-            ContentView().preferredColorScheme($0)
-        }
+        ContentView()//.preferredColorScheme($0)
+            .previewDevice("iPhone 12")
+        ContentView()//.preferredColorScheme($0)
+            .previewDevice("iPhone 8")
     }
 }

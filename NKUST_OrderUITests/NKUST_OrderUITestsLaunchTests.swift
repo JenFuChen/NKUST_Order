@@ -6,7 +6,7 @@
 //
 
 import XCTest
-m
+
 class NKUST_OrderUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {

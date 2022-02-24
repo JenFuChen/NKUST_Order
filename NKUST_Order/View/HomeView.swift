@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-m
+
 struct HomeView: View {
     
     var merchants:[Merchant] = MerchantList.all
@@ -187,7 +187,6 @@ class CustomHostingController<Content: View> : UIHostingController<Content>{
         }
     }
 }
-
 
 struct SheetContent: View{
     //                  0         1         2              3        4

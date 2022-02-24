@@ -6,7 +6,7 @@
 //
 import Foundation
 import SwiftUI
-m
+
 struct Merchant: Identifiable {
     let id = UUID()
     let imageName: String

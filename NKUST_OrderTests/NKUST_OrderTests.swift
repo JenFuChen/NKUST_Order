@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import NKUST_Order
-m
+
 class NKUST_OrderTests: XCTestCase {
 
     override func setUpWithError() throws {

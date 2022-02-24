@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-m
+
 struct MerchantView: View {
     var merchant: Merchant
     var body: some View {
