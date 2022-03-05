@@ -22,7 +22,7 @@ struct MerchantList{
         Merchant(
             imageName: "DefaultImg",
             name:"Testing 1",
-            type: "Food",
+            type: "Hello",
             discount: "",
             star:"4.5",
             url:URL(string: "https://google.com")!
@@ -30,7 +30,7 @@ struct MerchantList{
         Merchant(
             imageName: "DefaultImg",
             name:"Testing 2",
-            type: "Food",
+            type: "Fuck",
             discount: "",
             star:"4.5",
             url:URL(string: "https://google.com")!
@@ -38,7 +38,7 @@ struct MerchantList{
         Merchant(
             imageName: "DefaultImg",
             name:"Testing 3",
-            type: "Food",
+            type: "Chicken",
             discount: "",
             star:"4.5",
             url:URL(string: "https://google.com")!
@@ -46,7 +46,7 @@ struct MerchantList{
         Merchant(
             imageName: "DefaultImg",
             name:"Testing 4",
-            type: "Food",
+            type: "Nono",
             discount: "",
             star:"4.5",
             url:URL(string: "https://google.com")!

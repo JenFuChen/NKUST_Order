@@ -15,7 +15,7 @@ struct LoginView: View {
                 .font(.system(size: 55).bold())
                 .foregroundColor(Color(titleColor1))
                 //.frame(maxWidth: .infinity, alignment: .leading)
-                .frame (height: getRec().height / 3.5)
+                .frame (height: getRec().height / 6)
                 .padding()
                 .background(
                     ZStack{
@@ -37,29 +37,78 @@ struct LoginView: View {
                 )
             
             ScrollView(.vertical, showsIndicators: false){
-                VStack(spacing: 15){
+                VStack(spacing: 15){/*
                     Rectangle()
                         .frame(width: getRec().width / 10,height: 5)
                         .cornerRadius(10)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.secondary)*/
                     
-                    Text("Login")
+                    // Top Title
+                    Text(loginData.registerUser ? "Register" : "Login")
                         .font(.system(size : 18).bold())
                         //.frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom,10)
                     
+                    // Email
                     CustomTextField(icon: "envelope", title: "School Number", hint: "C110152319",
                                     value: $loginData.email, showPassword: .constant(false))
                         .padding(.top,30)
-                    
+                    // Password
                     CustomTextField(icon: "lock", title: "Password", hint: "123456",
                                     value: $loginData.password, showPassword: $loginData.showPassword)
                         .padding(.top,10)
                     
+                    //RE-Enter Password
                     if loginData.registerUser{
-                        CustomTextField(icon: "envelope", title: "Re Enter Password", hint: "123456",
+                        CustomTextField(icon: "lock", title: "Re-Enter Password", hint: "123456",
                                         value: $loginData.reEnterPassword, showPassword: $loginData.showPassword)
                             .padding(.top,10)
+                    }
+                    
+                    // Forgot Password
+                    Button{
+                        loginData.ForgetPassword()
+                    } label:{
+                        Text("Forgot Prassword?")
+                            .font(.system(size:14))
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color(titleColor1))
+                    }
+                    .padding(.top,8)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Spacer()
+                    
+                    //Login
+                    Button{
+                        if loginData.registerUser{
+                            loginData.Register()
+                        }else{
+                            loginData.Login()
+                        }
+                    } label:{
+                        Text("Login")
+                            .font(.system(size:20))
+                            .fontWeight(.semibold)
+                            .padding(.vertical,20)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .background(Color(titleColor1))
+                            .cornerRadius(10)
+                    }
+                    .padding(.top,8)
+                    
+                    //Register User
+                    Button{
+                        withAnimation{
+                            loginData.registerUser.toggle()
+                        }
+                    } label:{
+                        Text(loginData.registerUser ? "Back to Login":"Create account" )
+                            .font(.system(size:14))
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color(titleColor1))
+                            
                     }
                     
                 }
@@ -89,7 +138,7 @@ struct LoginView: View {
             }
             .foregroundColor(Color.black.opacity(0.8))
             
-            if title.contains("Password"){
+            if title.contains("Password") && !showPassword.wrappedValue{
                 SecureField(hint, text: value)
                     .padding(.top,2)
             }else{
@@ -104,9 +153,9 @@ struct LoginView: View {
             Group{
                 if title.contains("Password"){
                     Button(action:{
-                        
+                        showPassword.wrappedValue.toggle()
                     },label: {
-                        Image(systemName: "eye")
+                        Image(systemName: showPassword.wrappedValue ? "eye" : "eye.slash")
                             .foregroundColor(Color(titleColor2))
                     })
                         .offset(y:8)
