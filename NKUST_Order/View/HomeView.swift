@@ -11,60 +11,91 @@ struct HomeView: View {
     
     let columnLayout = Array(repeating: GridItem(), count: 1)
     
-    var merchants:[Merchant] = MerchantList.all
+    //var merchants:[Merchant] = Merchant.all
     var category = ["Category","Testing","Nothing"]
     var cateColor = [200,150,200]
     
     @State var selectItemIndex = 0
     @State var showSheet: Bool  = false
-    
+    @StateObject var homeData: HomeViewModel = HomeViewModel()
+    @Namespace var animatiopn
     var body: some View {
         NavigationView{
-            VStack{
-                ScrollView(.vertical,showsIndicators: false){
+                //entire home view to scroll
+            ScrollView(.vertical ,showsIndicators: false){
+                    // Search Bar
+                    VStack{
+                        HStack(spacing: 15){
+                            Image(systemName: "magnifyingglass")
+                                .font(.title2)
+                                .foregroundColor(.gray)
+                            
+                            TextField("Search",text: .constant(""))
+                                .disabled(true)
+                        }
+                        .padding(.vertical, 12)
+                        .padding(.horizontal)
+                        .background(
+                            Capsule()
+                                .strokeBorder(Color.gray,lineWidth: 0.8)
+                        )
+                    }.padding()
+                    
+                    // select type button
                     ScrollView(.horizontal,showsIndicators: false){
-                        HStack(spacing:15){
-                            ForEach(0..<3){num in
-                                Button(action: {
-                                    selectItemIndex = num
-                                }, label: {
-                                    ZStack{
-                                        Text(category[num])
-                                            .padding(8)
-                                            .foregroundColor(.white)
-                                            .background(Color(titleColor1))
-                                            .cornerRadius(5)
-                                            .font(.headline)
-                                    }
-                                })
+                        
+                        HStack(spacing: 18){
+                            ForEach(FoodType.allCases, id: \.self){ type in
+                                FoodTypeView(type: type)
                             }
                         }
-                        .padding(.horizontal,20)
-                        .padding(.vertical,5)
+                        .padding(.horizontal,25)
+                        
+                        
+//                        HStack(spacing:15){
+//                            // category, id: \.self
+//                            ForEach(0..<3){num in
+//                                Button(action: {
+//                                    selectItemIndex = num
+//                                }, label: {
+//                                    ZStack{
+//                                        Text(category[num])
+//                                            .padding(8)
+//                                            .foregroundColor(.white)
+//                                            .background(Color(buttonColor))
+//                                            .cornerRadius(5)
+//                                            .font(.headline)
+//                                    }
+//                                })
+//                            }
+//                        }
+//                        .padding(.horizontal,20)
+//                        .padding(.vertical,5)
                     }
                     
-                    Spacer()
-                    
+                   
+                    // Shop cell Scroll View
                     ScrollView(.vertical, showsIndicators: false){
-                        LazyVGrid(columns: columnLayout){
-                            ForEach(merchants, id: \.id){merchant in
+                        VStack(spacing : 18){
+                            ForEach(homeData.merchants, id: \.id){merchant in
                                 NavigationLink(
-                                    destination: MerchantView(merchant:merchant),label:{
+                                    destination: MerchantView(),label:{
                                             ShopCell(merchant: merchant)
-                                            .padding(.bottom,10)
+                                                .padding(.bottom,5)
                                         }
                                     )
                             }
                         }
                     }
+                    
                     // .statusBar(hidden: true)//移除頂部標題上方空白處
                     // .navigationBarTitleDisplayMode(.inline)
-                    // .font(.largeTitle.bold())
+                    
                     .navigationTitle(category[selectItemIndex])
-                    .navigationBarBackButtonHidden(false)
+                    .navigationBarBackButtonHidden(true)
                     
                     .toolbar{
-                        ToolbarItemGroup(placement: .navigationBarLeading){
+                        ToolbarItemGroup(placement: .navigationBarTrailing){
                             
                             Button{
                             action:do {
@@ -81,10 +112,50 @@ struct HomeView: View {
                             }
                         }
                     }
-                    .accentColor(.black)
+                    
                 }
             }
+            .accentColor(Color(buttonColor))
+            //.background(Color(color))
+        
+    }
+    @ViewBuilder
+    func FoodTypeView(type: FoodType) -> some View{
+        
+        Button{
+            withAnimation{
+                homeData.foodType = type
+            }
+        } label:{
+            Text(type.rawValue)
+                .font(.system(size: 15))
+                .fontWeight(.semibold)
+                .foregroundColor(homeData.foodType == type ? Color(titleColor1) : Color.gray)
+                .padding(.vertical, 5)
+                .overlay(
+                    ZStack{
+                        if homeData.foodType == type{
+                            Capsule()
+                                .fill(Color(titleColor1))
+                                .matchedGeometryEffect(id: "PRODUCTTAB", in: animatiopn)
+                                .frame(height:2)
+                        }else{
+                            Capsule()
+                                .fill(Color.clear)
+                                .frame(height:2)
+                        }
+                    }//.padding(.vertical)
+                    ,alignment: .bottom
+                )
         }
+    }
+}
+
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+            //.previewDevice("iPhone 13 Pro Max")
     }
 }
 
@@ -101,17 +172,19 @@ struct ShopCell: View{
                 //.clipShape(CustomCorners(corners:[.topLeft,.topRight],radius: 8))
                 .cornerRadius(8)
                 .frame(maxWidth: .infinity)
-                .padding(.horizontal,20)
+                //.padding(.horizontal,10)
             
-            HStack(alignment: .center){
+            HStack(){
                 LazyVGrid(columns: columnTitle){
+                    
+                    Text(merchant.name)
+                        .font(.title2)
+                    
                     Text(merchant.type)
                         .font(.body.bold())
                         .lineLimit(2)
                         .foregroundColor(.secondary)
                     
-                    Text(merchant.name)
-                        .font(.title2)
                     
                     Text(merchant.star)
                         .font(.body)
@@ -121,26 +194,14 @@ struct ShopCell: View{
             }
             //.padding(.horizontal,10)
         }
-        .padding(.horizontal,10)
-        .padding(.vertical,10)
+        .padding(.horizontal,20)
+        .padding(.vertical,5)
     }
 }
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-            .previewDevice("iPhone 12")
-        HomeView()
-            .previewDevice("iPhone 8")
-    }
-}
-
 
 // Half Sheet
 extension View{
-    func halfSheet<SheetView: View>(showSheet: Binding<Bool>, @ViewBuilder
-                                    sheetView: @escaping ()->SheetView) ->some View{
-        
+    func halfSheet<SheetView: View>(showSheet: Binding<Bool>, @ViewBuilder sheetView: @escaping ()->SheetView) ->some View{
         return self
             .background(
                 HalfSheetHelper(sheetView: sheetView(), showSheet: showSheet )
@@ -186,7 +247,6 @@ class CustomHostingController<Content: View> : UIHostingController<Content>{
         }
     }
 }
-
 
 struct SheetContent: View{
     //                  0         1         2              3        4

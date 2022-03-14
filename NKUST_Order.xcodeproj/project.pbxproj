@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6639C5ED27C38180009C3E30 /* MerchantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6639C5EC27C38180009C3E30 /* MerchantView.swift */; };
+		6648C56C27D656BA004524AB /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6648C56B27D656BA004524AB /* Restaurant.swift */; };
+		6648C56E27D6604A004524AB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6648C56D27D6604A004524AB /* HomeViewModel.swift */; };
 		66ADA36427C7793E00F73C94 /* BoardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ADA36327C7793E00F73C94 /* BoardingPageView.swift */; };
 		66B5A9D227BE2B51008E4BAB /* NKUST_OrderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5A9D127BE2B51008E4BAB /* NKUST_OrderApp.swift */; };
 		66B5A9D427BE2B51008E4BAB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5A9D327BE2B51008E4BAB /* ContentView.swift */; };
@@ -17,7 +19,6 @@
 		66B5A9ED27BE2B52008E4BAB /* NKUST_OrderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5A9EC27BE2B52008E4BAB /* NKUST_OrderUITests.swift */; };
 		66B5A9EF27BE2B52008E4BAB /* NKUST_OrderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5A9EE27BE2B52008E4BAB /* NKUST_OrderUITestsLaunchTests.swift */; };
 		66B5A9FD27BE2CAE008E4BAB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5A9FC27BE2CAE008E4BAB /* HomeView.swift */; };
-		66B5AA0127BE31EC008E4BAB /* MerchantList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5AA0027BE31EC008E4BAB /* MerchantList.swift */; };
 		66B5AA0627BE349C008E4BAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66B5AA0527BE349C008E4BAB /* Images.xcassets */; };
 		66CB08ED27C7814D0070D0F3 /* LoginPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB08EC27C7814D0070D0F3 /* LoginPageModel.swift */; };
 		66CB08EF27C7824C0070D0F3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB08EE27C7824C0070D0F3 /* LoginView.swift */; };
@@ -44,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		6639C5EC27C38180009C3E30 /* MerchantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantView.swift; sourceTree = "<group>"; };
+		6648C56B27D656BA004524AB /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		6648C56D27D6604A004524AB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		66ADA36327C7793E00F73C94 /* BoardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardingPageView.swift; sourceTree = "<group>"; };
 		66B5A9CE27BE2B51008E4BAB /* NKUST_Order.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NKUST_Order.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66B5A9D127BE2B51008E4BAB /* NKUST_OrderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NKUST_OrderApp.swift; sourceTree = "<group>"; };
@@ -56,7 +59,6 @@
 		66B5A9EC27BE2B52008E4BAB /* NKUST_OrderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NKUST_OrderUITests.swift; sourceTree = "<group>"; };
 		66B5A9EE27BE2B52008E4BAB /* NKUST_OrderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NKUST_OrderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		66B5A9FC27BE2CAE008E4BAB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		66B5AA0027BE31EC008E4BAB /* MerchantList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantList.swift; sourceTree = "<group>"; };
 		66B5AA0527BE349C008E4BAB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		66CB08EC27C7814D0070D0F3 /* LoginPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageModel.swift; sourceTree = "<group>"; };
 		66CB08EE27C7824C0070D0F3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -89,12 +91,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		66ADA36227C778FF00F73C94 /* ViewModel */ = {
+		6648C56A27D6567F004524AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6648C56B27D656BA004524AB /* Restaurant.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		66ADA36227C778FF00F73C94 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
 				66CB08EC27C7814D0070D0F3 /* LoginPageModel.swift */,
+				6648C56D27D6604A004524AB /* HomeViewModel.swift */,
 			);
-			path = ViewModel;
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		66B5A9C527BE2B51008E4BAB = {
@@ -122,8 +133,9 @@
 			children = (
 				66B5A9D127BE2B51008E4BAB /* NKUST_OrderApp.swift */,
 				66B5A9D327BE2B51008E4BAB /* ContentView.swift */,
+				6648C56A27D6567F004524AB /* Model */,
 				66B5A9FF27BE31C8008E4BAB /* Data */,
-				66ADA36227C778FF00F73C94 /* ViewModel */,
+				66ADA36227C778FF00F73C94 /* View Model */,
 				66B5A9FB27BE2C95008E4BAB /* View */,
 				66B5A9D527BE2B52008E4BAB /* Assets.xcassets */,
 				66B5A9D727BE2B52008E4BAB /* Preview Content */,
@@ -172,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				66B5AA0527BE349C008E4BAB /* Images.xcassets */,
-				66B5AA0027BE31EC008E4BAB /* MerchantList.swift */,
 				66FA143D27C37FE40041F9FB /* ItemList.swift */,
 			);
 			path = Data;
@@ -312,12 +323,13 @@
 				66CB08ED27C7814D0070D0F3 /* LoginPageModel.swift in Sources */,
 				6639C5ED27C38180009C3E30 /* MerchantView.swift in Sources */,
 				66B5A9FD27BE2CAE008E4BAB /* HomeView.swift in Sources */,
+				6648C56C27D656BA004524AB /* Restaurant.swift in Sources */,
 				66CB08EF27C7824C0070D0F3 /* LoginView.swift in Sources */,
 				66ADA36427C7793E00F73C94 /* BoardingPageView.swift in Sources */,
 				66FA143E27C37FE40041F9FB /* ItemList.swift in Sources */,
+				6648C56E27D6604A004524AB /* HomeViewModel.swift in Sources */,
 				66B5A9D427BE2B51008E4BAB /* ContentView.swift in Sources */,
 				66B5A9D227BE2B51008E4BAB /* NKUST_OrderApp.swift in Sources */,
-				66B5AA0127BE31EC008E4BAB /* MerchantList.swift in Sources */,
 				66CB08F127C7845B0070D0F3 /* CustomCorners.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

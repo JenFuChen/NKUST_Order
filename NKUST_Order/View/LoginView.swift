@@ -122,7 +122,16 @@ struct LoginView: View {
             )
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(color))
+        .background(Color(BGcolor))
+        
+        // Clean the data when change value
+        .onChange(of: loginData.registerUser){ newValue in
+            loginData.email = ""
+            loginData.password = ""
+            loginData.reEnterPassword = ""
+            loginData.showPassword  = false
+            loginData.showReEnterPassword = false
+        }
     }
     
     @ViewBuilder
@@ -156,7 +165,7 @@ struct LoginView: View {
                         showPassword.wrappedValue.toggle()
                     },label: {
                         Image(systemName: showPassword.wrappedValue ? "eye" : "eye.slash")
-                            .foregroundColor(Color(titleColor2))
+                            .foregroundColor(Color(buttonColor))
                     })
                         .offset(y:8)
                 }
